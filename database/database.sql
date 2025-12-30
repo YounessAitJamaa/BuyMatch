@@ -1,0 +1,5 @@
+CREATE DATABASE BuyMatch
+
+USE BuyMatch
+
+CREATE TABLE Utilisateur
