@@ -1,5 +1,8 @@
 <?php 
 
+    require_once '../../config/Database.php';   
+    require_once '../../classes/Role.php';
+
     class RoleRepository
     {
         private PDO $db;

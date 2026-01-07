@@ -31,6 +31,10 @@
             return $this->id;
         }
 
+        public function getNom(): string {
+            return $this->nom;
+        }
+
         public function getEmail(): string {
             return $this->email;
         }
