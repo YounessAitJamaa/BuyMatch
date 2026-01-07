@@ -46,6 +46,15 @@
 
             return $stmt->fetchColumn();
         }
+
+        public function getAllTicketsValide(int $organisateurId) {
+            $stmt = $this->db->prepare("SELECT SUM(c.nb_places) 
+                                        FROM categorie c
+                                        JOIN match_sportif m ON c.match_id = m.id
+                                        WHERE m.organisateur_id = :id AND m.statut = 'valide'");
+            $stmt->execute(['id' => $organisateurId]);
+            return (int) $stmt->fetchColumn();
+        }
     }
 
 

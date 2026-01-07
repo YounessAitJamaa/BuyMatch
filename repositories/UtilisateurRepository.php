@@ -1,8 +1,8 @@
 <?php
 
-    require_once '../../config/Database.php';
-    require_once '../../classes/Utilisateur.php';
-    require_once 'RoleRepository.php';
+    require_once __DIR__ . '../../config/Database.php';
+    require_once __DIR__ . '../../classes/Utilisateur.php';
+    require_once __DIR__ . '/RoleRepository.php';
 
     class UtilisateurRepository
     {
@@ -30,6 +30,7 @@
                 $data['id'],
                 $data['nom'],
                 $data['email'],
+                $data['photo'],
                 $data['mot_de_passe'],
                 (bool)$data['actif'],
                 $role
@@ -71,6 +72,7 @@
                 (int) $data['id'],
                 $data['nom'],
                 $data['email'],
+                $data['photo'],
                 $data['mot_de_passe'],
                 (bool) $data['actif'],
                 $role

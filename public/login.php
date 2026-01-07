@@ -2,12 +2,12 @@
 
     session_start();
 
-    require_once '../config/Database.php';
-    require_once '../classes/Role.php';
-    require_once '../classes/Utilisateur.php';
-    require_once '../repositories/RoleRepository.php';
-    require_once '../repositories/UtilisateurRepository.php';
-    require_once '../services/AuthService.php';
+    require_once __DIR__ . '../../config/Database.php';
+    require_once __DIR__ . '../../classes/Role.php';
+    require_once __DIR__ . '../../classes/Utilisateur.php';
+    require_once __DIR__ . '../../repositories/RoleRepository.php';
+    require_once __DIR__ . '../../repositories/UtilisateurRepository.php';
+    require_once __DIR__ . '../../services/AuthService.php';
 
     $error = null;
 
