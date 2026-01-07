@@ -20,6 +20,7 @@
             $user = $authService->login($email, $motDePasse);
 
             $_SESSION['user_id'] = $user->getId();
+            $_SESSION['user_name'] = $user->getNom();
             $_SESSION['role'] = $user->getRole()->getNomRole();
 
             switch ($_SESSION['role']) {
