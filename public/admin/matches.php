@@ -138,7 +138,7 @@
                                 <?= htmlspecialchars($match->getEquipe2()->getNom()) ?>
                             </td>
 
-                            <td class="px-6 py-4 text-sm text-slate-300">
+                            <td class="px-6 py-4 text-sm <?= strtotime($match->getDateHeure()) < time() ? 'text-red-400 font-bold' : 'text-slate-300' ?>">
                                 <?= date('d/m/Y H:i', strtotime($match->getDateHeure())) ?>
                             </td>
 

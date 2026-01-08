@@ -171,6 +171,14 @@
             }
             return $matches;
         }
+        
+        public function updateStatus(int $id, string $status): bool {
+            $stmt = $this->db->prepare("UPDATE match_sportif SET statut = :status WHERE id = :id");
+            return $stmt->execute([
+                'status' => $status,
+                'id' => $id
+            ]);
+        }
     }
 
 
