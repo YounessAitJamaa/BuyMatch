@@ -89,6 +89,73 @@
             ]);
         }
 
+        public function getUsers() {
+            $stmt = $this->db->prepare('SELECT COUNT(*) FROM utilisateur');
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        }
+
+        public function getTotalOrganisateurs(){
+            $stmt = $this->db->prepare('SELECT COUNT(*) FROM utilisateur WHERE role_id = :id');
+            $stmt->execute(['id' => 2]);
+            return $stmt->fetchColumn();
+        }
+
+        public function getTotalMatches() {
+            $stmt = $this->db->prepare('SELECT COUNT(*) FROM match_sportif');
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        }
+
+        public function getTotalEnAttentMatches() {
+            $stmt = $this->db->prepare("SELECT COUNT(*) FROM match_sportif WHERE statut = 'en_attente'");
+            $stmt->execute();
+            return $stmt->fetchColumn();
+        }
+
+        public function updateRole(int $userId, int $roleId) {
+            $stmt = $this->db->prepare("UPDATE utilisateur SET role_id = :roleId WHERE id = :userId");
+            $stmt->execute([
+                'roleId' => $roleId,
+                'userId' => $userId
+            ]);
+        }
+
+        public function findAll(): array {
+            $stmt = $this->db->prepare("
+                SELECT u.*, r.id as role_id, r.nom_role 
+                FROM utilisateur u
+                JOIN role r ON u.role_id = r.id
+                ORDER BY u.nom ASC
+            ");
+            $stmt->execute();
+
+            $users = [];
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $role = new Role($row['role_id'], $row['nom_role']);
+
+                $users[] = new Utilisateur(
+                    (int)$row['id'],
+                    $row['nom'],
+                    $row['email'],
+                    $row['photo'],
+                    $row['mot_de_passe'],
+                    (bool)$row['actif'],
+                    $role
+                );
+            }
+
+            return $users;
+        }
+
+        public function updateStatus(int $id, int $newActif) {
+            $stmt = $this->db->prepare("UPDATE utilisateur SET actif = :actif WHERE id = :id");
+            $stmt->execute([
+                'actif' => $newActif,
+                'id' => $id
+            ]);
+        }
+
     }
 
 

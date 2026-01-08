@@ -24,6 +24,11 @@
             return new Role($data['id'], $data['nom_role']);
         }
 
+        public function findAll(): array {
+            return $this->db
+                    ->query("SELECT * FROM role")
+                    ->fetchAll(PDO::FETCH_ASSOC);
+        } 
 
     }
 
