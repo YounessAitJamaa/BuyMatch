@@ -100,6 +100,35 @@
                 die("Error SQL " . $e->getMessage());
             }
         }
+
+        public function findById($id) {
+            $stmt = $this->db->prepare("SELECT * FROM match_sportif WHERE id = ?");
+            $stmt->execute([$id]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$row) return null;
+
+            $equipe1 = $this->equipeRepo->findById($row['equipe1_id']);
+            $equipe2 = $this->equipeRepo->findById($row['equipe2_id']);
+            $organisateur = $this->utilisateurRepo->findById($row['organisateur_id']);
+            $categories = $this->categorieRepo->findByMatchId($row['id']);
+
+            if (!$organisateur || !$equipe1 || !$equipe2) {
+                return null;
+            }
+
+            return new MatchSportif(
+                (int)$row['id'],
+                $equipe1,
+                $equipe2,
+                $row['date_heure'],
+                $row['lieu'],
+                (int)$row['duree'],
+                $organisateur,
+                $row['statut'],
+                $categories
+            );
+        }
     }
 
 

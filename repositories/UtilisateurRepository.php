@@ -79,8 +79,15 @@
             );
         }
 
-
-
+        public function updateProfileUrl(int $id, string $nom, string $photo): bool 
+        {
+            $stmt = $this->db->prepare("UPDATE utilisateur SET nom = :nom, photo = :photo WHERE id = :id");
+            return $stmt->execute([
+                'nom' => $nom,
+                'photo' => $photo,
+                'id' => $id
+            ]);
+        }
 
     }
 

@@ -34,8 +34,12 @@
         public function getNbPlaces(): int {
             return $this->nbPlaces;
         }
-        public function getMatch(): MatchSportif {
+        public function getMatch(): ?MatchSportif {
             return $this->match;
+        }
+
+        public function setMatch(MatchSportif $match): void {
+            $this->match = $match;
         }
     }
 

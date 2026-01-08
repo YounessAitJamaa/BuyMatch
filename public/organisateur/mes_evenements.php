@@ -181,6 +181,7 @@
                                             <?php endif; ?> 
                                         </td>
                                         <td class="px-8 py-5 text-right space-x-3">
+                                            <a href="match_details.php?id=<?= $match->getId() ?>" class="text-emerald-500 hover:text-emerald-400 font-bold text-sm transition-colors">Voir détails</a>
                                             <a href="#" class="text-emerald-500 hover:text-emerald-400 font-bold text-sm transition-colors">Modifier</a>
                                             <a href="#" class="text-red-500 hover:text-red-400 font-bold text-sm transition-colors">Annuler</a>
                                         </td>

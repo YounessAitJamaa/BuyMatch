@@ -84,6 +84,44 @@
     
         }
 
+        public function setId($id) {
+            $this->id = (int)$id;
+        }
+
+        public function setOrganisateur(Utilisateur $organisateur) {
+            $this->organisateur = $organisateur;
+        }
+
+        // --- Details ---
+        public function setDateHeure($date_heure) {
+            $this->dateHeure = $date_heure;
+        }
+
+        public function setLieu($lieu) {
+            $this->lieu = $lieu;
+        }
+
+        public function setDuree($duree) {
+            $this->duree = (int)$duree;
+        }
+
+        public function setStatut($statut) {
+            $this->statut = $statut;
+        }
+
+
+        public function setEquipe1($equipe) {
+            $this->equipe1 = $equipe;
+        }
+
+        public function setEquipe2($equipe) {
+            $this->equipe2 = $equipe;
+        }
+
+        public function setCategories($categories) {
+            $this->categories = is_array($categories) ? $categories : [];
+        }
+
     }
 
 

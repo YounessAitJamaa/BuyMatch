@@ -30,6 +30,12 @@
         <a href="dashboard.php" class="text-slate-400 hover:text-emerald-500 font-bold flex items-center gap-2 mb-8 transition-colors">
             ← Retour au tableau de bord
         </a>
+        <?php if(isset($_GET['success'])): ?>
+            <div class="mb-6 p-4 bg-emerald-500/10 border border-emerald-500/50 rounded-xl flex items-center gap-3">
+                <div class="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center text-[10px] text-white">✓</div>
+                <p class="text-emerald-400 text-sm font-bold">Votre profil a été mis à jour avec succès !</p>
+            </div>
+        <?php endif; ?>
 
         <div class="bg-slate-800/50 backdrop-blur rounded-2xl shadow-2xl border border-slate-700/50 overflow-hidden">
             <!-- header with gradient background -->
@@ -43,10 +49,15 @@
                 <section class="flex flex-col md:flex-row items-start md:items-center gap-8">
                     <!-- Profile Picture -->
                     <div class="shrink-0 h-32 w-32 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center text-white font-black text-4xl overflow-hidden border-4 border-slate-700">
+                        <?php 
+                            $userPhoto = $user->getPhoto();
+                            $photoSrc = (str_starts_with($userPhoto, 'http')) ? $userPhoto : "../../includes/assests/" . $userPhoto;
+                        ?>
                         <img 
-                            src="../../includes/assests/<?= htmlspecialchars($user->getPhoto()) ?>"
+                            src="<?= htmlspecialchars($photoSrc) ?>"
                             class="w-full h-full object-cover"
-                            alt="Profile photo"
+                            alt="Photo de profil"
+                            onerror="this.src='../../includes/assests/default-avatar.jpg'"
                         >
                     </div>
 

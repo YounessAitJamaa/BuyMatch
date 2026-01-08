@@ -43,6 +43,28 @@
             ]);
         }
 
+        public function findById(int $categoryId): ?Categorie {
+            
+            $stmt = $this->db->prepare("SELECT * FROM categorie WHERE id = :id");
+            
+            $stmt->execute(['id' => $categoryId]);
+            
+            
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$row) {
+                return null;
+            }
+
+            return new Categorie(
+                (int)$row['id'],
+                $row['nom'],
+                (float)$row['prix'],
+                (int)$row['nb_places'],
+                null
+            );
+        }
+
     }
 
 
