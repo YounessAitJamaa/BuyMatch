@@ -59,7 +59,7 @@
                             <p class="text-[10px] text-slate-400 font-medium">Administrateur</p>
                         </div>
                         <div class="w-9 h-9 rounded-full border-2 border-slate-600 p-0.5 group-hover:border-emerald-500/50 transition-all">
-                            <img src="/placeholder.svg?height=40&width=40" class="w-full h-full rounded-full object-cover" alt="Admin Profile">
+                            <img src="../../includes/assests/default_user.jpg" class="w-full h-full rounded-full object-cover" alt="Admin Profile">
                         </div>
                     </button>
                     
@@ -67,10 +67,6 @@
                         <div class="px-4 py-3 border-b border-slate-700 mb-2">
                             <p class="text-xs font-black uppercase text-slate-400 tracking-widest">Admin</p>
                         </div>
-                        <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-sm font-bold text-slate-300 hover:text-emerald-500 hover:bg-slate-700/50 transition-colors">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke-width="2"/></svg>
-                            Mon Profil
-                        </a>
                         <div class="h-px bg-slate-700 my-2"></div>
                         <a href="../logout.php" class="flex items-center gap-3 px-4 py-2.5 text-sm font-bold text-red-500 hover:bg-red-500/10 transition-colors">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-width="2"/></svg>
