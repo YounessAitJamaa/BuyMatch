@@ -99,4 +99,16 @@ class BilletRepository {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function findDetailById(int $billetId): array {
+        $sql = "SELECT b.*, m.date_heure, m.lieu, e1.nom as e1_nom, e2.nom as e2_nom, e1.logo as e1_logo, e2.logo as e2_logo, c.nom as cat_nom
+                FROM billet b
+                JOIN match_sportif m ON b.match_id = m.id
+                JOIN equipe e1 ON m.equipe1_id = e1.id
+                JOIN equipe e2 ON m.equipe2_id = e2.id
+                JOIN categorie c ON b.categorie_id = c.id
+                WHERE b.id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['id' => $billetId]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
