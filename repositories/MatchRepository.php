@@ -1,10 +1,10 @@
 <?php
 
-    require_once '../../config/Database.php';
-    require_once '../../classes/MatchSportif.php';
-    require_once '../../repositories/EquipeRepository.php';
-    require_once '../../repositories/UtilisateurRepository.php';
-    require_once '../../repositories/CategorieRepository.php';
+    require_once __DIR__ . '../../config/Database.php';
+    require_once __DIR__ . '../../classes/MatchSportif.php';
+    require_once __DIR__ . '../../repositories/EquipeRepository.php';
+    require_once __DIR__ . '../../repositories/UtilisateurRepository.php';
+    require_once __DIR__ . '../../repositories/CategorieRepository.php';
     
     class MatchRepository
     {

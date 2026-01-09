@@ -22,7 +22,8 @@
             $_SESSION['user_id'] = $user->getId();
             $_SESSION['user_name'] = $user->getNom();
             $_SESSION['role'] = $user->getRole()->getNomRole();
-
+            $_SESSION['user_email'] = $user->getEmail();
+             
             switch ($_SESSION['role']) {
                 case 'Administrateur': 
                     header('Location: ../admin/dashboard.php');

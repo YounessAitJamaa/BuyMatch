@@ -64,13 +64,12 @@ class BilletRepository {
 
 
     public function create(array $data) {
-      
         $sql = "INSERT INTO billet (numero_place, qr_code, match_id, categorie_id, acheteur_id, date_achat) 
                 VALUES (:numero_place, :qr_code, :match_id, :categorie_id, :acheteur_id, :date_achat)";
         
         $stmt = $this->db->prepare($sql);
         
-        return $stmt->execute([
+        $success = $stmt->execute([
             ':numero_place'  => $data['numero_place'],
             ':qr_code'       => $data['qr_code'],
             ':match_id'      => $data['match_id'],
@@ -78,6 +77,8 @@ class BilletRepository {
             ':acheteur_id'   => $data['acheteur_id'],
             ':date_achat'    => $data['date_achat'] 
         ]);
+
+        return $success ? $this->db->lastInsertId() : false;
     }
 
     public function findByUser(int $userId): array {
@@ -99,16 +100,23 @@ class BilletRepository {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function findDetailById(int $billetId): array {
-        $sql = "SELECT b.*, m.date_heure, m.lieu, e1.nom as e1_nom, e2.nom as e2_nom, e1.logo as e1_logo, e2.logo as e2_logo, c.nom as cat_nom
+    public function findDetailById(int $billetId): ?array {
+        $sql = "SELECT b.*, m.date_heure, m.lieu, m.duree,
+                e1.nom as e1_nom, e2.nom as e2_nom, 
+                e1.logo as e1_logo, e2.logo as e2_logo, 
+                c.nom as cat_nom
                 FROM billet b
                 JOIN match_sportif m ON b.match_id = m.id
                 JOIN equipe e1 ON m.equipe1_id = e1.id
                 JOIN equipe e2 ON m.equipe2_id = e2.id
                 JOIN categorie c ON b.categorie_id = c.id
                 WHERE b.id = :id";
+                
         $stmt = $this->db->prepare($sql);
         $stmt->execute(['id' => $billetId]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return $result ?: null;
+    }   
 }

@@ -97,13 +97,23 @@ $billets = $billetRepo->findByUser($_SESSION['user_id']);
                     </div>
                 </div>
                 
-                <a href="../matchs/index.php" class="relative group overflow-hidden">
+                <a href="../matches/index.php" class="relative group overflow-hidden">
                     <div class="absolute inset-0 bg-gradient-to-r from-emerald-500 to-teal-500 transition-transform duration-300 group-hover:scale-105 rounded-2xl"></div>
                     <div class="relative py-3 px-6 bg-gradient-to-r from-emerald-600 to-teal-600 group-hover:from-emerald-500 group-hover:to-teal-500 rounded-2xl shadow-lg shadow-emerald-500/30 group-hover:shadow-emerald-500/50 transition-all flex items-center justify-center gap-2">
                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                             <path d="M12 4v16m8-8H4" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                         <span class="text-white font-black uppercase tracking-wider text-sm">Acheter des places</span>
+                    </div>
+                </a>
+                
+                <a href="../auth/logout.php" class="relative group overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-red-500 to-rose-500 transition-transform duration-300 group-hover:scale-105 rounded-2xl"></div>
+                    <div class="relative py-3 px-6 bg-gradient-to-r from-red-600 to-rose-600 group-hover:from-red-500 group-hover:to-rose-500 rounded-2xl shadow-lg shadow-red-500/30 group-hover:shadow-red-500/50 transition-all flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="text-white font-black uppercase tracking-wider text-sm">Déconnexion</span>
                     </div>
                 </a>
             </div>
@@ -177,7 +187,7 @@ $billets = $billetRepo->findByUser($_SESSION['user_id']);
                     <h3 class="text-2xl font-black text-white mb-3">Aucun billet pour le moment</h3>
                     <p class="text-slate-500 mb-8">Découvrez nos matchs à venir et réservez vos places dès maintenant !</p>
                     
-                    <a href="../matchs/index.php" class="relative inline-block group overflow-hidden">
+                    <a href="../matches/index.php" class="relative inline-block group overflow-hidden">
                         <div class="absolute inset-0 bg-gradient-to-r from-emerald-500 to-teal-500 transition-transform duration-300 group-hover:scale-105 rounded-2xl"></div>
                         <div class="relative py-4 px-8 bg-gradient-to-r from-emerald-600 to-teal-600 group-hover:from-emerald-500 group-hover:to-teal-500 rounded-2xl shadow-lg shadow-emerald-500/30 group-hover:shadow-emerald-500/50 transition-all flex items-center justify-center gap-2">
                             <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
