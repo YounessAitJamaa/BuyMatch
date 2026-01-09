@@ -64,7 +64,23 @@
                 null
             );
         }
+        public function findAll(int $matchId): array {
+                $sql = "SELECT * FROM categorie WHERE match_id = :matchId ORDER BY prix DESC ";
+                $stmt = $this->db->prepare($sql);
+                $stmt->execute(['matchId' => $matchId]);
 
+                $categories = [];
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $categories[] = new Categorie(
+                        (int)$row['id'],
+                        $row['nom'],
+                        (float)$row['prix'],
+                        (int)($row['nb_places'] ?? 100),
+                        null
+                    );
+                }
+                return $categories;
+        }
     }
 
 

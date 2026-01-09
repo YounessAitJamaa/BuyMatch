@@ -200,7 +200,7 @@
                         Total: <?= count($billets) ?> billets
                     </span>
                 </div>
-                <div class="overflow-x-auto">
+                <div class="overflow-x-auto max-h-[370px] overflow-y-auto custom-scrollbar">
                     <table class="w-full text-left">
                         <thead class="bg-slate-900/50 border-b border-slate-700">
                             <tr>
@@ -209,13 +209,13 @@
                                 <th class="px-8 py-4 text-[10px] font-black text-slate-400 uppercase tracking-widest text-right">Date d'Achat</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-700">
+                        <tbody class="divide-y divide-slate-700 ">
                             <?php if(empty($billets)): ?>
                                 <tr>
                                     <td colspan="3" class="px-8 py-10 text-center text-slate-500 text-sm italic">Aucun billet vendu pour le moment.</td>
                                 </tr>
                             <?php else: ?>
-                                <?php foreach(array_slice(array_reverse($billets), 0, 5) as $billet): ?>
+                                <?php foreach($billets as $billet): ?>
                                     <tr class="hover:bg-slate-700/20 transition-colors">
                                         <td class="px-8 py-4">
                                             <p class="font-bold text-white"><?= htmlspecialchars($billet->getUtilisateur()->getNom()) ?></p>

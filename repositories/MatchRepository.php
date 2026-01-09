@@ -179,6 +179,56 @@
                 'id' => $id
             ]);
         }
+
+        public function findAllValide(): array {
+            // Ajout de la virgule manquante après e2_logo
+            $sql = "SELECT m.*, 
+                    e1.nom as e1_nom, e1.logo as e1_logo, 
+                    e2.nom as e2_nom, e2.logo as e2_logo,
+                    u.nom as u_nom, u.email as u_email, u.actif as u_actif
+                    FROM match_sportif m
+                    JOIN utilisateur u ON m.organisateur_id = u.id
+                    JOIN equipe e1 ON m.equipe1_id = e1.id
+                    JOIN equipe e2 ON m.equipe2_id = e2.id
+                    WHERE m.statut = 'valide' 
+                    AND m.date_heure > NOW() 
+                    ORDER BY m.date_heure ASC";
+
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute();
+            
+            $matches = [];
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                
+                $equipe1 = new Equipe((int)$row['equipe1_id'], $row['e1_nom'], $row['e1_logo']);
+                $equipe2 = new Equipe((int)$row['equipe2_id'], $row['e2_nom'], $row['e2_logo']);
+                
+                // Rôle statique pour l'organisateur (évite une requête SQL inutile)
+                $role = new Role(2, 'Organisateur'); 
+
+                $organisateur = new Utilisateur(
+                    (int)$row['organisateur_id'], 
+                    $row['u_nom'], 
+                    $row['u_email'], 
+                    "", // photo vide
+                    "", // mot de passe vide (sécurité)
+                    (bool)$row['u_actif'], 
+                    $role
+                );
+                
+                $matches[] = new MatchSportif(
+                    (int)$row['id'],
+                    $equipe1,
+                    $equipe2,
+                    $row['date_heure'],
+                    $row['lieu'],
+                    (int)$row['duree'],
+                    $organisateur,
+                    $row['statut']
+                );
+            }
+            return $matches;
+        }
     }
 
 
